@@ -95,9 +95,13 @@ void SerialConfigDialog::saveConfig()
     // portName
     // Make sure an element is selected
     if (ui->listWidgetSerialDevices->selectedItems().length() > 0) {
-        // Get the serial port name from the first 4 characters of the element in the listWidget
+        // Get the serial port name from the first 5 characters of the element in the listWidget
         // For example, "COM0"
-        serialConfig->portName = ui->listWidgetSerialDevices->selectedItems().at(0)->text().mid(0, 4);
+        QString pName = ui->listWidgetSerialDevices->selectedItems().at(0)->text().mid(0, 5);
+        // Trim the port name to remove the excess whitespace if it's 4 long
+        // For example "COM4 " -> "COM4", and "COM10" -> "COM10" (no changes)
+        pName = pName.trimmed();
+        serialConfig->portName = pName;
     }
 
     // readBufferSize

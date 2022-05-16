@@ -102,6 +102,7 @@ void MainWindow::on_pushButtonSend_clicked()
 
 void MainWindow::on_pushButton_clicked()
 {
+    // Prepare the send buffer and flush it on the serial port
     QByteArray buf;
     QString str;
     buf = serialPort->readAll();
